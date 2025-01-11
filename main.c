@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <raylib.h>
+#include <raymath.h>
 
 int fail(char msg[]) {
     printf("\033[91m[FAIL] %s", msg);
@@ -22,22 +24,25 @@ int ok(char msg[]) {
     return 0;
 }
 
-int main(void) {
-    const int SCREENWIDTH = 640;
-    const int SCREENHEIGHT = 480;
+const int SCREENWIDTH = 640;
+const int SCREENHEIGHT = 480;
 
-    InitWindow(SCREENWIDTH,SCREENHEIGHT,"raylib");
+int main(void) {
 
     SetTargetFPS(60);
+    InitWindow(SCREENWIDTH,SCREENHEIGHT,"raylib");
+
+    const Vector2 textPos = {0,0};
 
     while(!WindowShouldClose()){
+        textPos.x += 1;
+
         BeginDrawing();
             ClearBackground(RAYWHITE);
-            DrawText("owo", 200, 200, 20, BLUE);
+            DrawText("owo", textPos.x, textPos.y, 20, BLUE);
         EndDrawing();
     }
 
     CloseWindow();
-
     return 0;
 }
