@@ -32,10 +32,16 @@ int main(void) {
     SetTargetFPS(60);
     InitWindow(SCREENWIDTH,SCREENHEIGHT,"raylib");
 
-    const Vector2 textPos = {0,0};
+    Vector2 textPos = {0,0};
+    Vector2 dir = {1,1};
 
     while(!WindowShouldClose()){
-        textPos.x += 1;
+        textPos.x += 1 * dir.x;
+	textPos.y += 1 * dir.y;
+
+	if (textPos.x >= SCREENWIDTH || textPos.x <= 0) {
+            dir.x * -1;
+	}
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
